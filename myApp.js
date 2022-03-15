@@ -19,7 +19,7 @@ app.use("/public", express.static(__dirname + "/public"));
 //our get route handler
 app.get("/json", (req, res) => {
   //set json obj as var
-  var jsonResponse = { message: "Hello json" };
+  var jsonResponse = { "message": "Hello json" };
   //if our .env var is uppercase the perform the method
   if (process.env.MESSAGE_STYLE === "uppercase") {
     jsonResponse.message = jsonResponse.message.toUpperCase();
