@@ -24,7 +24,7 @@ app.get('/now', (req, res, next) => {
     next();
 },
   (req, res) => {
-    res.json({"Time": req.time});
+    res.json({time: req.time});
   }
 )
 
