@@ -11,15 +11,20 @@ console.log("Hello World");
 
 //chain middleware to create a time server 
 
+const newCurrentTimeString = () => {
+    return new Date().toString();
+
+}
+
+
 app.get('/now', (req, res, next) => {
-    var timeStamp = new Date().toString();
-    timeJson = {"Time": timeStamp};
+    req.time = newCurrentTimeString();
     console.log("Time Request: Method: " + req.method + " Path: " + req.path + " ip: " + req.ip);
-    console.log("The Time Is: " + timeStamp);
+    console.log("The Time Is: " + req.time);
     next();
 },
   (req, res) => {
-    res.json(timeJson);
+    res.json({"Time": req.time});
   }
 )
 
