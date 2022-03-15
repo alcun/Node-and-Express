@@ -28,6 +28,16 @@ app.get('/now', (req, res, next) => {
   }
 )
 
+app.get("/:word/echo", (req, res, next) => {
+    userWord = req.params.word;
+    console.log("Echoing Your Word: " + userWord)
+    next();
+},   (req, res) => {
+    res.json({echo: req.params.word});
+  }
+    
+)
+
 
 
 // on get request at home serve the html file
