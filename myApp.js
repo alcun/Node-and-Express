@@ -2,12 +2,28 @@ var express = require("express");
 var app = express();
 require("dotenv").config()
 
+// request logger 
 app.use((req, res, next) => {
     console.log(req.method + " " + req.path + " - " + req.ip);
     next();
 })
-
 console.log("Hello World");
+
+//chain middleware to create a time server 
+
+app.get('/now', (req, res, next) => {
+    var timeStamp = new Date().toString();
+    timeJson = {"Time": timeStamp};
+    console.log("Time Request: Method: " + req.method + " Path: " + req.path + " ip: " + req.ip);
+    console.log("The Time Is: " + timeStamp);
+    next();
+},
+  (req, res) => {
+    res.json(timeJson);
+  }
+)
+
+
 
 // on get request at home serve the html file
 app.get("/", (req, res) => {
