@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+var bodyParser = require('body-parser');
+
 require("dotenv").config()
 
 // request logger 
@@ -8,6 +10,26 @@ app.use((req, res, next) => {
     next();
 })
 console.log("Hello World");
+
+
+//using body-parser to parse post requests 
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+app.get("/parsed-body-info", (res, req, next) => {
+    console.log(bodyParser)
+})
+
+
+
+
+
+
+
 
 //set a function to get a current time stamp
 
