@@ -75,6 +75,12 @@ app.get("/name", (req, res, next) => {
 
 )
 
+//get data from POST requests - body payload + return in json
+
+app.post("/name", (req, res) => {
+    res.json({name: req.body.first + " " + req.body.last});
+})
+
 
 // on get request at home serve the html file
 app.get("/", (req, res) => {
