@@ -9,13 +9,14 @@ app.use((req, res, next) => {
 })
 console.log("Hello World");
 
-//chain middleware to create a time server 
+//set a function to get a current time stamp
 
 const newCurrentTimeString = () => {
     return new Date().toString();
 
 }
 
+//chain middleware to create a time server 
 
 app.get('/now', (req, res, next) => {
     req.time = newCurrentTimeString();
@@ -28,6 +29,8 @@ app.get('/now', (req, res, next) => {
   }
 )
 
+//function to display route parameter as json 
+
 app.get("/:word/echo", (req, res, next) => {
     userWord = req.params.word;
     console.log("Echoing Your Word: " + userWord)
@@ -38,6 +41,17 @@ app.get("/:word/echo", (req, res, next) => {
     
 )
 
+//get query parameter input from client + return data in json correct full name format
+
+app.get("/name", (req, res, next) => {
+        console.log(req.query)
+        firstName = req.query.first;
+        lastName = req.query.last;
+        console.log("Query Input: " + firstName + " " + lastName)
+        res.json({name: firstName + " " + lastName});
+    }
+
+)
 
 
 // on get request at home serve the html file
